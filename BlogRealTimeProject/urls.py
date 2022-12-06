@@ -23,9 +23,10 @@ urlpatterns = [
     path("<id>/share/", views.mail_send_view),
     path('tag/<tag_slug>', views.post_list_view, name='post_list_by_tag_name'),
     path("bssample/",views.bs_smaple_view),
+    path("signup/",views.signup_form_view),
 
 
     #use-in-last
-    re_path('^.*$', views.post_list_view),
+    re_path('^.*$', views.signup_form_view),
 
 ]

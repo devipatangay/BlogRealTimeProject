@@ -3,6 +3,25 @@ from taggit.models import Tag
 # Create your views here.
 
 # Create your views here.
+
+from BlogApp.forms import SignupForm
+def signup_form_view(request):
+    sentdata = False;
+    formsObj=SignupForm();      #empty-form
+    if request.method=='POST':
+        formsObj=SignupForm(request.POST)       #formobj with submitted-data
+        if formsObj.is_valid():
+            print('Basic Validation completed and Printing Data...!!!')
+            print('Name:',formsObj.cleaned_data['name'])
+            print('Password:',formsObj.cleaned_data['password'])
+            print('Email:',formsObj.cleaned_data['email'])
+            formsObj = SignupForm();  #again-empty-form
+            sentdata=True;
+    return render(request,'BlogApp/signup.html',{'form1':formsObj,'sentdata':sentdata})
+
+
+
+
 def post_list_view(request,tag_slug=None):
     print("post_list_view with paginator")
     post_list=Post.objects.all();

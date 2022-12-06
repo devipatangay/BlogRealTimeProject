@@ -44,3 +44,7 @@ class Comment(models.Model):
 		ordering=('created',)
 	def __str__(self):
 		return "Commented By {} on {}".format(self.name,self.post);
+
+class Blog(models.Model):
+	name=models.CharField(max_length=30)
+	emailid=models.CharField(max_length=30)

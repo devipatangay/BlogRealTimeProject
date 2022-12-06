@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{%extends 'BlogApp/base.html'%}
+{%block title %}{{post.title}}{%endblock%}
+{%block content%}
+
+  <div align='centre'>
+            <h1>Blog Signup Form</h1>
+			<hr />
+			{%if sentdata %}
+				<h3>Signup-process done success..!!!</h3>
+			{%endif%}
+            <form method="post" action=".">
+                {{form1.as_p}}
+                {%csrf_token%}
+                <input type="submit" value="signup">
+
+            </form>
+        </div>
+{%endblock%}
