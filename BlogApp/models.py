@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User #user-authentication
 from django.utils import timezone
 from taggit.managers import TaggableManager
+
+
 # Create your models here.
 #from django.core.urlresolvers import reverse #old-lib
 from django.urls import reverse	#new-lib
@@ -45,6 +47,11 @@ class Comment(models.Model):
 	def __str__(self):
 		return "Commented By {} on {}".format(self.name,self.post);
 
-class Blog(models.Model):
-	name=models.CharField(max_length=30)
-	emailid=models.CharField(max_length=30)
+	def get_absolute_url(self):
+		return reverse('detail',kwargs={'pk':self.pk})
+
+
+
+
+
+

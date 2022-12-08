@@ -1,23 +1,52 @@
 #post-list-view with paginator-codes...
 from taggit.models import Tag
+from BlogApp.forms import *
 # Create your views here.
 
 # Create your views here.
+from BlogApp.forms import postform
+from django.http import HttpResponseRedirect
+from BlogApp.forms import Signupform
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
+def home_page(request):
+     return render(request,'BlogApp/home.html')
 
-from BlogApp.forms import SignupForm
-def signup_form_view(request):
-    sentdata = False;
-    formsObj=SignupForm();      #empty-form
+def postview(request):
+    form = postform()
+
+    print('welcome')
     if request.method=='POST':
-        formsObj=SignupForm(request.POST)       #formobj with submitted-data
-        if formsObj.is_valid():
-            print('Basic Validation completed and Printing Data...!!!')
-            print('Name:',formsObj.cleaned_data['name'])
-            print('Password:',formsObj.cleaned_data['password'])
-            print('Email:',formsObj.cleaned_data['email'])
-            formsObj = SignupForm();  #again-empty-form
-            sentdata=True;
-    return render(request,'BlogApp/signup.html',{'form1':formsObj,'sentdata':sentdata})
+          form = postform(request.POST,request.FILES)
+          if form.is_valid():
+              user =form.save(commit=True)
+              return HttpResponseRedirect('/thank')
+    return render(request,'BlogApp/postmain.html',{'form':form})
+
+
+def logout_view(request):
+      request.session.clear()
+      return render(request,'Blogapp/logout.html')
+
+def signupview(request):
+    sent= False
+    form = Signupform()
+    if request.method=='POST':
+        form = Signupform(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.set_password(user.set_password)
+            user.save()
+            sent=True
+            return HttpResponseRedirect('/account/login/',{'sent':sent})
+    else:
+        form= Signupform()
+    return render(request,'BlogApp/signup.html',{'form':form,'sent':sent})
+
+
+
+
 
 
 
@@ -134,3 +163,27 @@ def post_detail_view(request, year,month,day,post):
     else:
         form=CommentForm()
     return render(request,'BlogApp/post_detail.html',{"post":post, 'form':form, 'comments':comments,'csubmit':csubmit,'similar_posts':similar_posts})
+
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView,DetailView,UpdateView
+from django.core.files.storage import FileSystemStorage
+
+
+class commentview(CreateView):
+    model = Comment
+    fields= ['name','email','body']
+    templates_name = 'BlogApp/comment.html'
+
+class commentdelete(DetailView):
+    model = Comment
+    success_url= reverse_lazy('succ')
+
+def commentdeletesucc(request):
+    return render(request,'BlogApp/delete.html')
+
+def postupdateview(UpdateView):
+    model = Post
+    fields= ('title','slug','author',)
+
+

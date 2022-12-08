@@ -16,17 +16,32 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from BlogApp import views
+from django.conf.urls import include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<post>[-\w]+)/$', views.post_detail_view,name='post_detail'),
+    path('account/',include('django.contrib.auth.urls')),
+    path('post/',views.postview,name= 'post'),
+    path('logout/',views.logout_view),
+    path('tag/',views.post_list_view),
+    path('<year>/<month>/<day>/<post>/', views.post_detail_view,name='post_detail'),
     path("<id>/share/", views.mail_send_view),
-    path('tag/<tag_slug>', views.post_list_view, name='post_list_by_tag_name'),
+    path('signup/',views.signupview),
+    path('login/',views.login_required),
+    path('home/',views.home_page),
+
+
+
+    #path('thankyou/',views.thankyou),
+
     path("bssample/",views.bs_smaple_view),
-    path("signup/",views.signup_form_view),
+
+    path('<tag_slug>/comment/', views.post_list_view, name='post_list_by_tag_name'),
 
 
     #use-in-last
-    re_path('^.*$', views.signup_form_view),
+    re_path('^.*$', views.home_page),
 
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -148,4 +148,5 @@ EMAIL_HOST_USER= ""	#your own-email-id
 EMAIL_HOST_PASSWORD="pmsmaexcgclxkfql"		#your own-pwd
 EMAIL_USE_TLS= True
 
-
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/logout'

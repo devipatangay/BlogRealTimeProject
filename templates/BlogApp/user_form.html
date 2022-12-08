@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{%extends 'BlogApp/base.html'%}
+{%block content%}
+<div style="color: peru" align="center" xmlns="http://www.w3.org/1999/html">
+    <h1>update user data</h1>
+    <form method="post" style="background: #c7dbd2">
+        user first name:<input type="text" name="first name" value="{{ user.first_name }}"><br/><br/><br/>
+        user last name:<input type="text" name="last name" value="{{ user.last_name }}"><br/><br/><br/>
+        user email:<input type="text" name="email" value="{{ user.email }}"><br/><br/><br/>
+        user username:<input type="text" name="username" value="{{ user.username }}"><br/><br/><br/>
+    {% csrf_token %}
+        <button type="submit">submit</button>
+        <a href="/tag/"><button type="button">back</button></a>
+    </form>
+</div>
+{% endblock %}

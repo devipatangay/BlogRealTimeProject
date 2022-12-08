@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{%extends 'BlogApp/base.html'%}
+{%block content%}
+   <h1>delete {{ post.name }}post?</h1><hr/>
+   <form method="post">
+       {% csrf_token %}
+       yes:<button style="color: #0b5ed7" type="submit">delete post</button><br/><br/>
+
+   </form>
+{% endblock %}

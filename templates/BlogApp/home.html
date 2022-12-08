@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+{%block content%}
+<html lang="en">
+<head>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Renuka</title>
+</head>
+<body id="body1">
+  <div align='center' class="jumbotron">
+      <h1 style="color: #0a58ca">Welcome to {{ user.username|title }} Blog website</h1><br/>
+      <p>Create your own blog</p><br/>
+      <h3 style="color: #0a58ca">You would love it</h3>
+      <br/>
+      <a href="/tag/"><button type="button"> get started</button></a><br/><br/>
+
+        </div>
+{%endblock%}
+</body>
+

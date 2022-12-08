@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{%extends 'BlogApp/base.html'%}
+{%block content%}
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete comments page</title>
+</head>
+<body>
+   <h1> delete {{ comment.name }}comment </h1><br/>
+    <form method="post">
+        {% csrf_token %}
+         yes:<button style="color: #0b5ed7" type="submit">delete comment</button><br/><br/>
+    </form>
+</body>
+{% endblock %}
+
+</html>
