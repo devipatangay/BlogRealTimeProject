@@ -25,12 +25,20 @@ urlpatterns = [
     path('account/',include('django.contrib.auth.urls')),
     path('post/',views.postview,name= 'post'),
     path('logout/',views.logout_view),
-    path('tag/',views.post_list_view),
     path('<year>/<month>/<day>/<post>/', views.post_detail_view,name='post_detail'),
     path("<id>/share/", views.mail_send_view),
     path('signup/',views.signupview),
-    path('login/',views.login_required),
+    path('comment/',views.commentview.as_view()),
+    path('update/<pk>',views.postupdateview.as_view(),name='update'),
+    path('<pk>/userupdate/',views.profileupdate,name='update'),
+    path('delete/<pk>',views.commentdelete.as_view(),name='delete'),
+    path('delete1/<pk>',views.Postdeleteview.as_view(),name='delete'),
+    path('succ1/',views.postsuccview,name='succ1'),
+    path('succ/',views.commentdeletesucc,name='succ'),
+    path('contact/',views.contactview),
     path('home/',views.home_page),
+    path('tag/',views.post_list_view),
+
 
 
 

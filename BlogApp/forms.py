@@ -15,7 +15,7 @@ class CommentForm(forms.ModelForm):
 
 
 from django.contrib.auth.models import User
-class Signupform(forms.ModelForm):
+class signupform(forms.ModelForm):
      class meta:
          model=User
          fields = ['first name','last name','password','username','email']

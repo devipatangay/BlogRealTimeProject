@@ -63,7 +63,7 @@ button:hover{
     margin-right: 150px;
     margin-top:100px;
 }
-#div1{
+#div1,#div4{
     alignment: center;
     text-align: center;
     border: 2px solid gold;
@@ -83,3 +83,132 @@ button:hover{
 #la{
     background-color: white;
 }
+
+.sidebar1 header{
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    background-color: midnightblue;
+    user-select: none;
+}
+.sidebar1 #ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 2px solid rgb(225, 225,225,.1);
+    border-bottom: 1px solid black;
+    transition: .5s;
+
+}
+#ul li:hover a{
+    padding-left: 50px;
+}
+
+.sidebar1 #ul a i{
+    margin-right: 16px;
+}
+
+#check{
+    display: none;
+}
+label #btn,label #cancel{
+    position: absolute;
+    cursor: pointer;
+    background: darkslateblue;
+    border-radius: 3px;
+
+}
+label #btn{
+    left: 40px;
+    top:25px;
+    font-size: 35px;
+    color: white;
+    padding: 6px 12px;
+    transition: all .5s;
+
+}
+label #cancel{
+    z-index: 1111;
+    left: -195px;
+    top:30px;
+    font-size: 30px;
+    color: bisque;
+    padding: 4px 8px;
+    transition: all .5s ease;
+
+}
+
+#check:checked ~ .sidebar1 {
+    left: 0;
+
+}
+#check:checked ~ label #btn{
+    left: 250px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+#check:checked ~ label #cancel{
+    left: 195px;
+}
+#check:checked ~ section{
+    margin-left: 250px;
+
+}
+section{
+    background-position: center;
+    background-size: cover;
+    transition: all .5s;
+}
+
+#divs{
+    alignment: center;
+    text-align: center;
+    border: 1px solid darkslateblue;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    margin-left: 200px;
+    margin-top: 50px;
+    width: 80%;
+    height: 130px;
+}
+.jumbotron{
+    alignment: center;
+    text-align: center;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-bottom: 100px;
+    margin-top: 200px;
+    width: 80%;
+    height: 130px;
+    display: inline-block;
+}
+#ya{
+    border: 2px solid darkslateblue;
+    font-weight: bold;
+    text-align: center;
+}
+#div2,#div6,#div8{
+    font-weight: bold;
+    margin-top: 200px;
+    margin-left: 300px;
+    margin-right: 100px;
+    font-size: 20px;
+    border: 5px solid darkslateblue;
+}
+
+#btun{
+    background-color: indianred;
+    border-radius: 15px;
+}
+
+
+

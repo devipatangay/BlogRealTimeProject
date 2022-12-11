@@ -3,7 +3,7 @@
 {%block content%}
     <div id="div1">
         <h1><b>{{user.username}}</b></h1>
-        <form style="" method="post" enctype="multipart/form-data">
+        <form style="color: #0b5ed7" method="post" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
             <br/>

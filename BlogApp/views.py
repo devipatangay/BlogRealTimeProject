@@ -6,7 +6,7 @@ from BlogApp.forms import *
 # Create your views here.
 from BlogApp.forms import postform
 from django.http import HttpResponseRedirect
-from BlogApp.forms import Signupform
+from BlogApp.forms import signupform
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
@@ -31,9 +31,9 @@ def logout_view(request):
 
 def signupview(request):
     sent= False
-    form = Signupform()
+    form = signupform()
     if request.method=='POST':
-        form = Signupform(request.POST)
+        form = signupform(request.POST)
         if form.is_valid():
             user = form.save()
             user.set_password(user.set_password)
@@ -41,7 +41,7 @@ def signupview(request):
             sent=True
             return HttpResponseRedirect('/account/login/',{'sent':sent})
     else:
-        form= Signupform()
+        form= signupform()
     return render(request,'BlogApp/signup.html',{'form':form,'sent':sent})
 
 
@@ -182,8 +182,34 @@ class commentdelete(DetailView):
 def commentdeletesucc(request):
     return render(request,'BlogApp/delete.html')
 
-def postupdateview(UpdateView):
+class postupdateview(UpdateView):
     model = Post
-    fields= ('title','slug','author',)
+    fields= ('title','slug','author','body','images')
+
+def profileupdate(request,pk):
+    user = User.objects.get(id=pk)
+    print('hi')
+    if request.method=='POST':
+        print('hello')
+        form= signupform(request.POST,isinstance=user)
+        print('welcome')
+        if form.is_valid():
+            ser=user.username()
+            print('good')
+            user.save(commit=True)
+            return redirect('/update/')
+    print('ok')
+    return render(request,'BlogApp/user_form.html',{'user':user,})
+
+class Postdeleteview(DetailView):
+    model = Post
+    success_url= reverse_lazy('succ1')
+
+def postsuccview(request):
+     return render(request,'BlogApp/delete.html')
+
+def contactview(request):
+    return render(request,'BlogApp/contact.html')
+
 
 
