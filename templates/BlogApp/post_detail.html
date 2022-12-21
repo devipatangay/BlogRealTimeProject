@@ -2,6 +2,7 @@
 {%extends 'BlogApp/base.html'%}
 {%block title %}{{post.title}}{%endblock%}
 {%block content%}
+    <div style="color: #101214">
     <h1>{{post.title}}</h1>
     <hr />
     <p id='date'>Published on {{post.publish}} by {{post.author|title}}</p>
@@ -24,7 +25,8 @@
     {%if comments %}
         {%for comment in comments %}
             <p id='ch' style="font-style:italic;background-color: lightgreen"  > comment {{forloop.counter}} by {{comment.name}} on {{comment.created}}</p>
-		    <div class="cb" style= "color:darkgreen">{{comment.body|linebreaks}}</div>
+		    <a href="/{{ comment.id }}/delete/">Delete-Comment</a>
+            <div class="cb" style= "color:darkgreen">{{comment.body|linebreaks}}</div>
 
  	        <hr />
  	    {%endfor%}
@@ -34,11 +36,13 @@
  	{%if csubmit %}
 		<h2>Your Comment Added Succefully</h2>
  	{%else%}
-        <form method="post">
+        <form method="post" action="{{ post_detail }}">
             {{form.as_p}}
             {%csrf_token%}
             <input type="submit" name="" value="Submit-Comment">
+        <a href="/tag/"><button type="button">Back</button></a>
         </form>
  	{%endif%}
+    </div>
 {%endblock%}
 

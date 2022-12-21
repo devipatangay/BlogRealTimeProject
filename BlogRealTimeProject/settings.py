@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r*6ug8z_x2u!)w$!d2)(o=j^fkl*4cq!%z55^un=&vj_&)e!7i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['renukadevi.pythonanywhere.com']
+#ALLOWED_HOSTS = ['renukadevi.pythonanywhere.com']
 
 
 # Application definition
@@ -147,6 +147,14 @@ EMAIL_PORT= 587
 EMAIL_HOST_USER= ""	#your own-email-id
 EMAIL_HOST_PASSWORD="pmsmaexcgclxkfql"		#your own-pwd
 EMAIL_USE_TLS= True
+
+PASSWORD_HASHERS=[
+ 'django.contrib.auth.hashers.Argon2PasswordHasher',
+ 'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+ 'django.contrib.auth.hashers.BCryptPasswordHasher',
+ 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+ 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+]
 
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/logout'

@@ -31,21 +31,18 @@ urlpatterns = [
     path('comment/',views.commentview.as_view()),
     path('update/<pk>',views.postupdateview.as_view(),name='update'),
     path('<pk>/userupdate/',views.profileupdate,name='update'),
+    path('userdetails/',views.userdetailview),
     path('delete/<pk>',views.commentdelete.as_view(),name='delete'),
     path('delete1/<pk>',views.Postdeleteview.as_view(),name='delete'),
     path('succ1/',views.postsuccview,name='succ1'),
     path('succ/',views.commentdeletesucc,name='succ'),
+    path('thankyou/',views.thankyou_view),
     path('contact/',views.contactview),
     path('home/',views.home_page),
     path('tag/',views.post_list_view),
 
 
-
-
-    #path('thankyou/',views.thankyou),
-
     path("bssample/",views.bs_smaple_view),
-
     path('<tag_slug>/comment/', views.post_list_view, name='post_list_by_tag_name'),
 
 

@@ -17,3 +17,4 @@ from django.db.models import Count
 @register.simple_tag		#hence use simple_tag
 def get_most_commented_posts(count=1):
     return Post.objects.annotate(total_comments=Count('comments')).order_by('-total_comments')[:count]
+

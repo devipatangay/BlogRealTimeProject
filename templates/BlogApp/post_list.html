@@ -4,6 +4,24 @@
 {%block content%}
     <h1>Renuka Blog</h1>
     <hr />
+       <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div id="sidebar">
+        <header>{{ user.username }}</header>
+        <ul>
+            <li><a href="/userdetails/"><i class="fas fa-qrcode"></i>View Profile</a></li>
+            <li><a href="/{{ user.id }}/userupdate/"><i class="fas fa-link"></i>Edit Profile</a></li>
+            <li><a href="/contact/"><i class="fas fa-envelope"></i>contact</a></li>
+            <li><a href="/logout/"><i class="fas fa-question-circle"></i>logout</a></li>
+        </ul>
+    </div>
+    <h1>{{ user.username}} Blog</h1>
+    <hr />
+    <p id="p1">Login by : {{ user.username }}</p>
+    <a href="/postmain/"><button>Add-Post</button></a>
     {%if tag%}
         <h2>Posts tagged with "{{tag.name}}"</h2>
     {%endif%}
@@ -11,6 +29,7 @@
     {%for post in post_list%}
         <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
         <p>
+         <a href="/{{ post.id}}/delete1/">Delete-Post</a>
             Tags:
             {% for tag in post.tags.all %}
                 <a href="{%url "post_list_by_tag_name" tag.slug %}">{{tag.name}}</a>
@@ -24,4 +43,6 @@
     {%endfor%}
     {%include 'BlogApp/pagination.html' with page=post_list%}
     {% comment %}{%include 'BlogApp/pagination.html' with page=page_obj%}{% endcomment %}
+
 {%endblock%}
+

@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 {% load static %}
 {%block content%}
-<html lang="en">
 <head>
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/blog.css'%}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RENUKA BLOG</title>
 </head>
-<body>
-  <div align='center'>
-            <h1 style="color: #0b5ed7">Blog Signup Form</h1>
-			<hr />
-			{%if sentdata %}
-				<h3>Signup-process done success..!!!</h3>
-			{%endif%}
-            <form method="post" action=".">
-                {{form1.as_p}}
-                {%csrf_token%}
-                <button type="submit">Register</button>
-
-            </form>
-        </div>
-{%endblock%}
-</body>
-</html>
+   {% if sent %}
+        <h3>Registrations is Successfully done</h3>
+    {% else %}
+    <div class="signup">
+        <h3 style="color: black">Signup Form</h3>
+        <hr style="color: deepskyblue">
+        <form method="post" style="color: black">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Signup</button>
+            <a href="/"><button type="button">Back</button></a>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}

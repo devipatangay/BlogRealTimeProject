@@ -1,4 +1,5 @@
 from django import forms
+from  django.urls import reverse
 class EmailSendForm(forms.Form):
     name=forms.CharField()
     email=forms.EmailField()
@@ -17,8 +18,8 @@ class CommentForm(forms.ModelForm):
 from django.contrib.auth.models import User
 class signupform(forms.ModelForm):
      class meta:
-         model=User
-         fields = ['first name','last name','password','username','email']
+         model =User
+         fields = (' first_name',' last_name','password','username','email')
 
 class postform(forms.ModelForm):
      class Meta:
